@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Blockchain demo client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="d-app voorbeeld">
+    <meta name="author" content="Pieter Leek">
+    <meta http-equiv="Cache-control" content="no-cache"/>
+
+    <!-- import bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+            integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
+
+    <!-- import web3 version 4.6.0-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.6.0/web3.min.js"
+            integrity="sha512-DTSUnB4owPx74KyQnBL+XPSCI8elZpjR0dnHmSnHkmTirIzI/9ANYxuDZ87TVsQ1E+8rQB/V4EAaUfKN+h42+w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- import eigen javascript-->
+    <script src="js/main.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/blockchain.js"></script>
+    <link rel="stylesheet" href="css/blockchain.css">
+</head>
+
+<body>
+<div class="container">
+    <main>
+        <!-- Errorberichten -->
+        <div class="alert alert-success alert-dismissible" role="alert" id="alertGetEthers"></div>
+        <div class="alert alert-dark alert-dismissible" role="alert" id="alertThanksMessage"></div>
+        <div class="alert alert-danger alert-dismissible" role="alert" id="ErrorMessage"></div>
+
+        <!-- Bootstrap Grid -->
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <h2><img src="img/eth.png" alt="" width="72" height="57">d-app example</h2>
+                <p class="lead">Welkom op mijn d-app message app. Elke vierde bericht krijgt 1/10 Eth.</p>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <h4 class="mb-3">Stuur een bericht</h4>
+                <label for="EthAddress" class="form-label">Op welk adres kunnen we de ethers storten?</label>
+                <input type="text" class="form-control" id="EthAddress" placeholder=""
+                       value="0x0044e024CF0B89A3716DDcFb618BD1a910AAf42d" required>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <label for="SendMessage" class="form-label">Wat is je bericht?</label>
+                <div class="form-group">
+                    <textarea class="form-control" id="SendMessage" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6"><br>
+                <button type="button" id="btnSendMessage" class="btn btn-secondary">Verstuur het nu!</button>
+                <hr/>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <label for="sendMoney" class="form-label">Hoeveel geld wil je op het contract storten?</label>
+                <input type="text" class="form-control" id="sendMoney" placeholder="" value="" required>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <br>
+                <button type="button" id="btnAddMoney" class="btn btn-secondary">Stort geld op dit contract</button>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <br>
+                <span id="amountEth"></span>
+                <hr/>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <label for="getmessageID" class="form-label">Welk berichtnummer wil je ophalen?</label>
+                <select class="form-control" id="getmessageID">
+                </select>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <br>
+                <button type="button" id="btnGetMessage" class="btn btn-secondary">Haal het op</button>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <br>
+                <div class="form-group">
+                    <textarea class="form-control" id="printMessageHere" readonly rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
